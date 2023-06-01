@@ -1,4 +1,4 @@
-import os
+# Import the required libraries
 import pandas as pd
 
 def read_excel_file(folder_path, file_name):
