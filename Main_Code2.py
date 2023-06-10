@@ -1,4 +1,5 @@
 # Import the required libraries
+import os
 import pandas as pd
 
 def read_excel_file(folder_path, file_name):
@@ -9,9 +10,9 @@ def read_excel_file(folder_path, file_name):
     df = pd.read_excel(file_path)  # Read the Excel file into a DataFrame
     return df
 
-def generate_nested_pivot_table(df, index_cols, column_cols, values_col, agg_func='sum'):
+def generate_nested_pivot_table(df, index_cols, column_cols, values_col, agg_func='count'):
     pivot_table = pd.pivot_table(df, values=values_col, index=index_cols, columns=column_cols, aggfunc=agg_func)
-    return pivot_table,dataframe
+    #return pivot_table,dataframe
 
 # Define the folder path and file name
 absolute_path = "./ML_Pivot_Automation"
@@ -21,7 +22,7 @@ file_name = 'InputFile.xlsx'  # Replace with the actual Excel file name
 # Define the index columns, column columns, and values column
 index_columns = ['Department', 'First Name']  # Replace with the actual columns to be used as index
 column_columns = ['Position']  # Replace with the actual columns to be used as columns
-values_column = 'Last Name'  # Replace with the actual column for values
+values_column = ['Age']  # Replace with the actual column for values
 
 try:
     dataframe = read_excel_file(folder_path, file_name)
@@ -31,8 +32,11 @@ try:
 
     pivot_table = generate_nested_pivot_table(dataframe, index_columns, column_columns, values_column)
     print(pivot_table)
-    print(dataframe)
+    print(type(pivot_table))
+    #print(dataframe)
+    print(type(dataframe))
 except FileNotFoundError as e:
     print(e)
 
 
+#generate_nested_pivot_table()
